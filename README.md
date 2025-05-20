@@ -18,6 +18,13 @@ This project is part of the **Futuremakers Full Stack Evaluation**.
 
 ---
 
+## 🌐 Live Demo
+
+Check out the live demo here:  
+[https://seach-pokemon-git-main-bebbies-projects.vercel.app/](https://seach-pokemon-git-main-bebbies-projects.vercel.app/)
+
+---
+
 ## 🧪 Testing
 
 Jest is used for unit testing.

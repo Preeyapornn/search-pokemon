@@ -1,5 +1,4 @@
-import client from "./lib/apollo-client";
-import { gql } from "@apollo/client";
+
 import Navbar from "./components/navbar";
 import WelcomePage from "./pokemon/page";
 

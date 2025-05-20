@@ -20,6 +20,48 @@ import CardPoken from "../components/cardPokemon";
 import client from "../lib/apollo-client";
 import { gql } from "@apollo/client";
 
+// Define the Pokemon type
+interface Pokemon {
+  id: string;
+  number: string;
+  name: string;
+  image: string;
+  classification: string;
+  types: string[];
+  weaknesses: string[];
+  maxHP: number;
+  maxCP: number;
+  attacks: {
+    fast: {
+      name: string;
+      type: string;
+      damage: number;
+    }[];
+    special: {
+      name: string;
+      type: string;
+      damage: number;
+    }[];
+  };
+  weight: {
+    minimum: string;
+    maximum: string;
+  };
+  height: {
+    minimum: string;
+    maximum: string;
+  };
+  fleeRate: number;
+  evolutionRequirements?: {
+    amount: number;
+    name: string;
+  };
+  evolutions?: {
+    name: string;
+    maxCP: number;
+  }[];
+}
+
 const WelcomePage = () => {
   const [search, setSearch] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,7 +69,7 @@ const WelcomePage = () => {
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(151);
   const [loading, setLoading] = useState(true);
-  const [pokemons, setPokemons] = useState<any[]>([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 9;
   const [types, setTypes] = useState<string[]>([]);
@@ -82,7 +124,9 @@ const WelcomePage = () => {
 
       const uniqueTypes = [
         ...new Set(
-          result.data.pokemons.flatMap((pokemon: any) => pokemon.types)
+          result.data.pokemons.flatMap(
+            (pokemon: { types: string[] }) => pokemon.types
+          )
         ),
       ] as string[];
       setTypes(uniqueTypes);
@@ -105,7 +149,9 @@ const WelcomePage = () => {
 
       const uniqueWeaknesses = [
         ...new Set(
-          result.data.pokemons.flatMap((pokemon: any) => pokemon.weaknesses)
+          result.data.pokemons.flatMap(
+            (pokemon: { weaknesses: string[] }) => pokemon.weaknesses
+          )
         ),
       ] as string[];
       setWeaknesses(uniqueWeaknesses);
@@ -170,7 +216,7 @@ const WelcomePage = () => {
     fetchData();
   }, []);
 
-  const handleChangePage = (_: any, value: number) => {
+  const handleChangePage = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -189,18 +235,6 @@ const WelcomePage = () => {
       router.push(`/`);
     }
   };
-
-  const heightRanges = [
-    { label: "Short (0 - 1 m)", value: "0-1" },
-    { label: "Medium (1 - 2 m)", value: "1-2" },
-    { label: "Tall (2+ m)", value: "2-100" },
-  ];
-
-  const weightRanges = [
-    { label: "Light (0 - 10 kg)", value: "0-10" },
-    { label: "Medium (10 - 50 kg)", value: "10-50" },
-    { label: "Heavy (50+ kg)", value: "50-999" },
-  ];
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") handleSearch();
@@ -606,7 +640,12 @@ const WelcomePage = () => {
                     image: pokemon.image,
                     types: pokemon.types.map((t: string) => ({ name: t })),
                     attacks: pokemon.attacks,
-                    evolutions: pokemon.evolutions,
+                    evolutions: pokemon.evolutions
+                      ? pokemon.evolutions.map((evo) => ({
+                          id: `${pokemon.id}-${evo.name}`,
+                          name: evo.name,
+                        }))
+                      : undefined,
                   }}
                 />
               </div>

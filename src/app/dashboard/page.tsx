@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import client from "../lib/apollo-client";
 import { gql } from "@apollo/client";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
@@ -157,7 +158,12 @@ const DashboardPage = () => {
 
   const pokemon = pokemons[currentIndex];
 
-  const normalizeRadarData = (data: any[]) => {
+  type RadarDataItem = {
+    subject: string;
+    value: number;
+  };
+
+  const normalizeRadarData = (data: RadarDataItem[]) => {
     const ranges: Record<string, { min: number; max: number }> = {
       HP: { min: 0, max: 500 },
       CP: { min: 0, max: 5000 },
@@ -275,7 +281,7 @@ ${recommendRole()}
         </div>
 
         <div className="w-full md:w-1/2 bg-white p-6 text-center">
-          <img
+          <Image
             src={pokemon.image}
             alt={pokemon.name}
             className="mx-auto w-32 h-32 sm:w-40 sm:h-40 object-contain"

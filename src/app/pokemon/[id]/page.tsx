@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import Skeleton from "@mui/material/Skeleton";
 
 import React from "react";
-import use from "react";
+
+import Image from "next/image";
 import { gql } from "@apollo/client";
 import client from "../../lib/apollo-client";
 import BarChart from "@/app/components/barChart";
@@ -236,7 +237,7 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
           ))}
         </div>
 
-        <img
+        <Image
           src={pokemon.image}
           alt={pokemon.name}
           className="w-full sm:w-[80%] h-auto object-cover mx-auto"
@@ -306,7 +307,7 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
                 {pokemon.evolutions.map((evolution, index) => (
                   <React.Fragment key={index}>
                     <div className="flex flex-col items-center px-2 py-1 rounded-xl text-sm text-center">
-                      <img
+                      <Image
                         src={evolution.image}
                         alt={evolution.name}
                         className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mb-1 border-2 border-gray-200"

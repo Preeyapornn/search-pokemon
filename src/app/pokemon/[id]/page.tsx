@@ -238,6 +238,8 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
         </div>
 
         <Image
+          width={300}
+          height={300}
           src={pokemon.image}
           alt={pokemon.name}
           className="w-full sm:w-[80%] h-auto object-cover mx-auto"
@@ -308,6 +310,8 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
                   <React.Fragment key={index}>
                     <div className="flex flex-col items-center px-2 py-1 rounded-xl text-sm text-center">
                       <Image
+                        width={100}
+                        height={100}
                         src={evolution.image}
                         alt={evolution.name}
                         className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mb-1 border-2 border-gray-200"

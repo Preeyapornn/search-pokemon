@@ -16,11 +16,10 @@ import {
   Stack,
 } from "@mui/material";
 
-import CardPoken from "../components/cardPokemon";
+import CardPoken from "./cardPokemon";
 import client from "../lib/apollo-client";
 import { gql } from "@apollo/client";
 
-// Define the Pokemon type
 interface Pokemon {
   id: string;
   number: string;
@@ -89,7 +88,6 @@ const WelcomePage = () => {
     }
   }, [searchParams]);
 
-  // Dropdown onchange handlers
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedType(e.target.value);
     setPage(1);

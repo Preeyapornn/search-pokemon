@@ -282,6 +282,8 @@ ${recommendRole()}
 
         <div className="w-full md:w-1/2 bg-white p-6 text-center">
           <Image
+            width={160}
+            height={160}
             src={pokemon.image}
             alt={pokemon.name}
             className="mx-auto w-32 h-32 sm:w-40 sm:h-40 object-contain"

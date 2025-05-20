@@ -154,7 +154,7 @@ const CardPoken: React.FC<CardPokenProps> = ({ pokemon }) => {
               gap={2}
               flexDirection={isSmallScreen ? "column" : "row"}
             >
-              {/* Fast Attacks */}
+         
               <Box flex={1}>
                 <Typography variant="subtitle2" fontWeight="bold">
                   Fast Attacks
@@ -171,7 +171,7 @@ const CardPoken: React.FC<CardPokenProps> = ({ pokemon }) => {
                 </Box>
               </Box>
 
-              {/* Special Attacks */}
+    
               <Box flex={1}>
                 <Typography variant="subtitle2" fontWeight="bold">
                   Special Attacks

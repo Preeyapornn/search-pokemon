@@ -301,7 +301,7 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
       </div>
       <div className="grid col-span-full justify-center items-center justify-items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center items-start justify-items-center mt-10 w-full max-w-6xl px-4">
-          {/* Evolutions Section */}
+     
           <div className="w-full">
             <div className="font-bold text-lg">Evolutions</div>
             {pokemon.evolutions && pokemon.evolutions.length > 0 ? (
@@ -355,14 +355,14 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
             )}
           </div>
 
-          {/* Attacks Section */}
+         
           <div className="w-full">
             <div className="font-bold text-lg">Attacks</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-              {/* Special Attacks */}
+            
               <div className="flex flex-col gap-2">
                 <div className="font-semibold flex items-center gap-2">
-                  {/* Special Attack Icon */}
+      
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="30"
@@ -412,10 +412,10 @@ function PokemonDetail({ params }: { params: Promise<{ id: string }> }) {
                 </div>
               </div>
 
-              {/* Fast Attacks */}
+        
               <div className="flex flex-col gap-2">
                 <div className="font-semibold flex items-center gap-2">
-                  {/* Fast Attack Icon */}
+        
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="30"

@@ -20,9 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased`}>
-        {children}
-      </body>
+      <head>
+        <link rel="icon" type="image/png" href="/pokemon.png" />
+      </head>
+      <body className={`${geistSans.variable} antialiased`}>{children}</body>
     </html>
   );
 }
